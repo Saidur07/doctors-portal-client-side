@@ -93,7 +93,7 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
             <input
               type="text"
               name="phone"
-              placeholder="Enter Phone Number"
+              placeholder=" Phone Number"
               className="input input-bordered w-full max-w-xs"
               required
             />
