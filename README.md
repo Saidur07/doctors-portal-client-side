@@ -1,1 +1,1 @@
-# Doctors Portal : Created With 💗 By Saidur Rahman
+# Doctors Portal Created With 💗 By Saidur Rahman
