@@ -2,14 +2,14 @@ import React from "react";
 import doctor from "../../assets/images/doctor.png";
 import appointment from "../../assets/images/appointment.png";
 import PrimaryButton from "../Shared/PrimaryButton";
-
 const MakeAppointment = () => {
   return (
     <section
+      data-aos="fade-right"
       style={{
         background: `url(${appointment})`,
       }}
-      className="flex justify-center items-center md:rounded-full p-6"
+      className="flex justify-center items-center md:rounded-full px-6 "
     >
       <div className="flex-1 hidden lg:block">
         <img className="mt-[-100px]" src={doctor} alt="" />

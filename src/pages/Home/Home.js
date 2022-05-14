@@ -7,7 +7,6 @@ import MakeAppointment from "./MakeAppointment";
 import Services from "./Services";
 import ServicesMain from "./ServicesMain";
 import Testimonials from "./Testimonials";
-
 const Home = () => {
   return (
     <div>
