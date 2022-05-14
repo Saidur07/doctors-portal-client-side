@@ -15,7 +15,7 @@ const service = ({ service, setTreatment }) => {
             )}
           </p>
           <p>
-            {slots.length} {slots.length > 1 ? "Spaces" : "Space"} Availeable
+            {slots.length} {slots.length > 1 ? "Spaces" : "Space"} Available
           </p>
           <div className="card-actions">
             <label
