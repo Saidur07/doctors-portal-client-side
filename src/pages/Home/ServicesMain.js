@@ -8,14 +8,14 @@ const ServicesMain = () => {
         <div className="hero-content flex-col lg:flex-row">
           <img
             src={treatment}
-            className="max-w-sm mx-8 rounded-lg shadow-2xl"
+            className="max-w-sm lg:mx-8 rounded-lg shadow-2xl"
             alt=""
           />
           <div>
-            <h1 className="text-5xl font-bold">
+            <h1 className="lg:text-5xl text-2xl font-bold">
               Exceptional Dental Care, on Your Terms
             </h1>
-            <p className="py-6">
+            <p className="my-6">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
               point of using Lorem Ipsumis that it has a more-or-less normal
