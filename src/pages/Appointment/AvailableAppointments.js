@@ -1,11 +1,13 @@
 import { format } from "date-fns";
 import React, { useState, useEffect } from "react";
-import Skeleton from "react-loading-skeleton";
+import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingSkeleton from "../Shared/LoadingSkeleton";
 import BookingModal from "./BookingModal";
 import Service from "./Service";
 
 const AvailableAppointments = ({ date }) => {
   const [services, setServices] = useState([]);
+  const [hasMore, sethasMore] = useState(true);
   const [treatment, setTreatment] = useState(null);
 
   const formattedDate = format(date, "PP");
@@ -14,164 +16,47 @@ const AvailableAppointments = ({ date }) => {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [formattedDate]);
+  const fetchAllData = async () => {
+    const res = await fetch(
+      `http://localhost:5000/available?date=${formattedDate}`
+    );
+    const data = await res.json();
+    return data;
+  };
+  const fetchData = async () => {
+    const dataFormServer = await fetchAllData();
 
+    setServices([...services, ...dataFormServer]);
+    if (dataFormServer.length === 0) {
+      sethasMore(false);
+    }
+  };
   return (
     <div className="my-10">
       <h4 className="text-xl text-secondary text-center my-12">
         Available Appointments on {format(date, "PP")}
       </h4>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <InfiniteScroll
+        dataLength={services.length}
+        next={fetchData}
+        hasMore={hasMore}
+        loader={<LoadingSkeleton></LoadingSkeleton>}
+        // endMessage={<div>Ended!</div>}
+      >
         {services.length < 1 ? (
-          <>
-            <div className="card lg:max-w-lg bg-base-100 shadow-xl overflow-x-hidden">
-              <div className="card-body flex items-center justify-center">
-                <Skeleton
-                  width={"10rem"}
-                  height={"2rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-                <Skeleton
-                  width={"15rem"}
-                  height={"1rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                  count={3}
-                ></Skeleton>
-                <Skeleton
-                  width={"8rem"}
-                  height={"3rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-              </div>
-            </div>
-            <div className="card lg:max-w-lg bg-base-100 shadow-xl overflow-x-hidden">
-              <div className="card-body flex items-center justify-center">
-                <Skeleton
-                  width={"10rem"}
-                  height={"2rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-                <Skeleton
-                  width={"15rem"}
-                  height={"1rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                  count={3}
-                ></Skeleton>
-                <Skeleton
-                  width={"8rem"}
-                  height={"3rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-              </div>
-            </div>
-            <div className="card lg:max-w-lg bg-base-100 shadow-xl overflow-x-hidden">
-              <div className="card-body flex items-center justify-center">
-                <Skeleton
-                  width={"10rem"}
-                  height={"2rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-                <Skeleton
-                  width={"15rem"}
-                  height={"1rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                  count={3}
-                ></Skeleton>
-                <Skeleton
-                  width={"8rem"}
-                  height={"3rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-              </div>
-            </div>
-            <div className="card lg:max-w-lg bg-base-100 shadow-xl overflow-x-hidden">
-              <div className="card-body flex items-center justify-center">
-                <Skeleton
-                  width={"10rem"}
-                  height={"2rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-                <Skeleton
-                  width={"15rem"}
-                  height={"1rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                  count={3}
-                ></Skeleton>
-                <Skeleton
-                  width={"8rem"}
-                  height={"3rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-              </div>
-            </div>
-            <div className="card lg:max-w-lg bg-base-100 shadow-xl overflow-x-hidden">
-              <div className="card-body flex items-center justify-center">
-                <Skeleton
-                  width={"10rem"}
-                  height={"2rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-                <Skeleton
-                  width={"15rem"}
-                  height={"1rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                  count={3}
-                ></Skeleton>
-                <Skeleton
-                  width={"8rem"}
-                  height={"3rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-              </div>
-            </div>
-            <div className="card lg:max-w-lg bg-base-100 shadow-xl overflow-x-hidden">
-              <div className="card-body flex items-center justify-center">
-                <Skeleton
-                  width={"10rem"}
-                  height={"2rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-                <Skeleton
-                  width={"15rem"}
-                  height={"1rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                  count={3}
-                ></Skeleton>
-                <Skeleton
-                  width={"8rem"}
-                  height={"3rem"}
-                  highlightColor="#d1d1d1"
-                  baseColor="#f6f6f6"
-                ></Skeleton>
-              </div>
-            </div>
-          </>
+          <LoadingSkeleton></LoadingSkeleton>
         ) : (
-          services.map((service) => (
-            <Service
-              key={service._id}
-              service={service}
-              setTreatment={setTreatment}
-            ></Service>
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((service) => (
+              <Service
+                key={service._id}
+                service={service}
+                setTreatment={setTreatment}
+              ></Service>
+            ))}
+          </div>
         )}
-      </div>
+      </InfiniteScroll>
       {treatment && (
         <BookingModal
           date={date}
