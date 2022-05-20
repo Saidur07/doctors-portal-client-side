@@ -12,6 +12,8 @@ import "aos/dist/aos.css";
 import React, { Suspense } from "react";
 import Loading from "./pages/Shared/Loading";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import MyAppointsments from "./pages/Dashboard/MyAppointsments";
+import MyReview from "./pages/Dashboard/MyReview";
 const Home = React.lazy(() => import("./pages/Home/Home"));
 
 function App() {
@@ -43,7 +45,13 @@ function App() {
                   <Dashboard />
                 </RequireAuth>
               }
-            />
+            >
+              <Route
+                index
+                element={<MyAppointsments></MyAppointsments>}
+              ></Route>
+              <Route path="review" element={<MyReview></MyReview>}></Route>
+            </Route>
 
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
