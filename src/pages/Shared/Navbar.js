@@ -85,7 +85,7 @@ const Navbar = () => {
           htmlFor="dashboard-drawer"
           className={`btn btn-ghost drawer-button ${
             location.pathname === "/dashboard" ? "" : "hidden"
-          }`}
+          } lg:hidden`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
