@@ -11,7 +11,7 @@ const AvailableAppointments = ({ date }) => {
   const formattedDate = format(date, "PP");
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/service`)
+    fetch(`http://localhost:5000/available?date=${formattedDate}`)
       .then((res) => res.json())
       .then((data) => {
         setServices(data);
