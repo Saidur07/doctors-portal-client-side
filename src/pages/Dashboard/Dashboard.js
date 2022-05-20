@@ -5,19 +5,15 @@ const Dashboard = () => {
   return (
     <div>
       <div class="drawer drawer-mobile">
-        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col items-center justify-center">
-          <h2 className="text-5xl text-center text-primary">Dashboard</h2>
+        <input id="dashboard-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content mt-4">
+          <h2 className="text-3xl text-center text-primary">
+            Welcome to your Dashboard!
+          </h2>
           <Outlet></Outlet>
-          <label
-            for="my-drawer-2"
-            class="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
-          </label>
         </div>
         <div class="drawer-side">
-          <label for="my-drawer-2" class="drawer-overlay"></label>
+          <label for="dashboard-drawer" class="drawer-overlay"></label>
           <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
             <li>
               <Link to="/dashboard">Dashboard</Link>

@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Navbar = () => {
@@ -10,6 +10,7 @@ const Navbar = () => {
   const logout = () => {
     signOut(auth);
   };
+  const location = useLocation();
 
   const menuItems = (
     <>
@@ -81,8 +82,10 @@ const Navbar = () => {
       <div className="navbar-end">
         <label
           tabIndex="1"
-          htmlFor="dashboard-sidebar"
-          className="btn btn-ghost lg:hidden"
+          htmlFor="dashboard-drawer"
+          className={`btn btn-ghost drawer-button ${
+            location.pathname === "/dashboard" ? "" : "hidden"
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
