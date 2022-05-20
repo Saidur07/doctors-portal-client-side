@@ -1,23 +1,22 @@
 import { format } from "date-fns";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import LoadingSkeleton from "../Shared/LoadingSkeleton";
 import BookingModal from "./BookingModal";
 import Service from "./Service";
 const AvailableAppointments = ({ date }) => {
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [treatment, setTreatment] = useState(null);
 
   const formattedDate = format(date, "PP");
-  useEffect(() => {
-    setLoading(true);
-    fetch(`http://localhost:5000/available?date=${formattedDate}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setServices(data);
-        setLoading(false);
-      });
-  }, [formattedDate]);
+  const {
+    data: services,
+    isLoading,
+    refetch,
+  } = useQuery(["available", formattedDate], () =>
+    fetch(`http://localhost:5000/available?date=${formattedDate}`).then((res) =>
+      res.json()
+    )
+  );
 
   return (
     <div className="my-10">
@@ -25,7 +24,7 @@ const AvailableAppointments = ({ date }) => {
         Available Appointments on {format(date, "PP")}
       </h4>
 
-      {loading ? (
+      {isLoading ? (
         <LoadingSkeleton></LoadingSkeleton>
       ) : services.length === 0 ? (
         setInterval(() => {
@@ -40,6 +39,7 @@ const AvailableAppointments = ({ date }) => {
               key={service._id}
               service={service}
               setTreatment={setTreatment}
+              refetch={refetch}
             ></Service>
           ))}
         </div>

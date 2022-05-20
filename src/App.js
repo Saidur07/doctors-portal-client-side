@@ -11,6 +11,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { Suspense } from "react";
 import Loading from "./pages/Shared/Loading";
+import Dashboard from "./pages/Dashboard/Dashboard";
 const Home = React.lazy(() => import("./pages/Home/Home"));
 
 function App() {
@@ -32,6 +33,14 @@ function App() {
               element={
                 <RequireAuth>
                   <Appointment />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="dashboard"
+              element={
+                <RequireAuth>
+                  <Dashboard />
                 </RequireAuth>
               }
             />
