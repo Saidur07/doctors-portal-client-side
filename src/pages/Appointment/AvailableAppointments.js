@@ -27,11 +27,9 @@ const AvailableAppointments = ({ date }) => {
       {isLoading ? (
         <LoadingSkeleton></LoadingSkeleton>
       ) : services.length === 0 ? (
-        setInterval(() => {
-          <h1 className="text-center text-2xl my-5 text-red-300">
-            No Data Found :3
-          </h1>;
-        }, 3000)
+        <h1 className="text-center text-2xl my-5 text-red-300">
+          No Data Found :3
+        </h1>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-3">
           {services.map((service) => (
